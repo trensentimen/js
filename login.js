@@ -1,16 +1,14 @@
-import { postWithToken } from "https://jscroot.github.io/api/croot.js";
+import { post } from "./utilities/api.js";
 import { setInner, getValue } from "https://jscroot.github.io/element/croot.js";
 
-const PostSignUp = () => {
-    const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/post-login";
-    const tokenkey = "token";
-    const tokenvalue = "f48bd58cb3b3972d05bb9303b15ce9b83f4fcb9c871d1b05906f2fec20620ea0";
+const PostSignIn = () => {
+    const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/login";
     const datainjson = {
-        username: getValue("username"),
+        email: getValue("email"),
         password: getValue("password")
     };
 
-    postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
+    post(target_url, datainjson, responseData);
 };
 
 const responseData = (result) => {
@@ -19,7 +17,7 @@ const responseData = (result) => {
         alert(`Berhasil Masuk ${result.message}`);
         window.location.href = "dashboard.html";
     } else {
-        alert(`Gagal Masuk password atau username salah`);
+        alert(`Gagal Masuk password atau email salah`);
         console.log(result.message);
     }
 };
@@ -31,4 +29,4 @@ const setCookieWithExpireHour = (cname, cvalue, exhour) => {
     document.cookie = `${cname}=${cvalue};${expires};path=/`;
 };
 
-export default PostSignUp;
+window.PostSignIn = PostSignIn;
