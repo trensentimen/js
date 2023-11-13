@@ -14,7 +14,7 @@ const Postdata = () => {
     if (token) {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
-        console.log("token tidak ada "+result.message);
+        // console.log("token tidak ada "+result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
         hideLoadingModal()
     }
