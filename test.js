@@ -1,0 +1,3 @@
+Postdata = () => {
+    console("MASUK")
+}

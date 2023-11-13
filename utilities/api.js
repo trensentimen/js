@@ -13,7 +13,10 @@ export const post = (target_url, datajson, responseFunction) =>{
 
     fetch(target_url, requestOptions)
         .then(response => response.text())
-        .then(result => responseFunction(JSON.parse(result)))
+        .then(result => {
+            // console.log(result)
+            return responseFunction(JSON.parse(result))
+        })
         .catch(error => console.log('error', error));
 }
 
