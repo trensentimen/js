@@ -11,7 +11,7 @@ const cekCookie = () => {
             window.location.href = 'dashboard.html';
         }
     } else {
-        if (getFileName() !== "login.html" || getFileName() !== "register.html") {
+        if (getFileName() !== "login.html" && getFileName() !== "register.html") {
             window.location.href = 'login.html';
         }
     }
