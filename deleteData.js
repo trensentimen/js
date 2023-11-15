@@ -23,7 +23,6 @@ const deleteData = () => {
     if (token) {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
-        console.log("token tidak ada " + result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
         window.location.href = "sentimen.html";
     }
@@ -31,12 +30,10 @@ const deleteData = () => {
 };
 
 const responseData = (result) => {
-    // console.log(result);
     if (result.status === true) {
         alert("Berhasil menghapus topik")
         window.location.href = "sentimen.html";
     } else {
-        console.log(result.message);
         alert(`parameter bermasalah atau sesi anda sudah habis, silahkan ulangi atau logout dan login ulang`);
         window.location.href = "sentimen.html";
     }

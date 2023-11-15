@@ -14,7 +14,6 @@ const Postdata = () => {
     if (token) {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
-        // console.log("token tidak ada "+result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
         hideLoadingModal()
     }
@@ -22,10 +21,8 @@ const Postdata = () => {
 };
 
 const responseData = (result) => {
-    // console.log(result);
     if (result.status === true) {
         let isiRow = (value) => {
-            console.log(value)
             let content =
                 card.replace("#JUDUL#", value.topicname)
                     .replace("#SOURCE#", value.source.source)
@@ -38,7 +35,6 @@ const responseData = (result) => {
         result.data.forEach(isiRow)
         hideLoadingModal()
     } else {
-        console.log(result.message);
         hideLoadingModal()
         alert(`sesi anda sudah habis, silahkan logout dan login ulang`);
     }

@@ -8,12 +8,10 @@ const PostSignUp = () => {
         password: getValue("password"),
         name: getValue("name")
     };
-    console.log(datainjson);
     post(target_url, datainjson, responseData);
 };
 
 const responseData = (result) => {
-    console.log(result);
     if (result.status === true) {
         alert(`Berhasil Masuk ${result.message}`);
         window.location.href = "login.html";

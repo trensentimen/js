@@ -37,17 +37,14 @@ const PostAddTopic = () => {
         postWithBearer(target_url, token, datainjson, responseData)
         alert("Berhasil menambahkan topik")
     } else {
-        console.log("token tidak ada " + result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
     }
 };
 
 const responseData = (result) => {
-    // console.log(result);
     if (result.status === true) {
         window.location.href = "sentimen.html";
     } else {
-        console.log(result.message);
         alert(`sesi anda sudah habis, silahkan logout dan login ulang`);
     }
 };

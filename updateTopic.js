@@ -46,7 +46,6 @@ const PostUpdateTopic = () => {
     if (token) {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
-        console.log("token tidak ada " + result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
         window.location.href = "sentimen.html";
     }
@@ -54,11 +53,9 @@ const PostUpdateTopic = () => {
 };
 
 const responseData = (result) => {
-    console.log(result);
     if (result.status === true) {
         window.location.href = "topik.html?id=" + result.data[0]._id;
     } else {
-        console.log(result.message);
         alert(`parameter bermasalah atau sesi anda sudah habis, silahkan ulangi atau logout dan login ulang`);
         window.location.href = "sentimen.html";
     }

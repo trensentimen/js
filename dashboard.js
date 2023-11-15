@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (menus.length && dropdowns.length) {
         for (let i = 0; i < menus.length; i++) {
-            console.log(menus[i])
             menus[i].addEventListener('click', function () {
-                // console.log(menus[i])
                 toggleMaxHeight(dropdowns);
                 menus[i].classList.toggle('is-active');
             });
@@ -14,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 function toggleMaxHeight(dropdowns) {
-    // console.log(dropdowns)
     for (let j = 0; j < dropdowns.length; j++) {
         const dropdown = dropdowns[j];
         const isOpen = dropdown.classList.contains('is-active');

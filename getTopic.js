@@ -22,7 +22,6 @@ const Postdata = () => {
     if (token) {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
-        console.log("token tidak ada " + result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
         hideLoadingModal
         window.location.href = "sentimen.html";
@@ -32,7 +31,6 @@ const Postdata = () => {
 };
 
 const responseData = (result) => {
-    // console.log(result);
     if (result.status === true) {
 
         addInner("judul", result.data[0].topicname)
@@ -47,7 +45,6 @@ const responseData = (result) => {
         hideLoadingModal()
         // window.location.href = "sentimen.html";
     } else {
-        console.log(result.message);
         alert(`parameter bermasalah atau sesi anda sudah habis, silahkan ulangi atau logout dan login ulang`);
         hideLoadingModal
         window.location.href = "sentimen.html";

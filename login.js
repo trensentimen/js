@@ -14,7 +14,6 @@ const PostSignIn = () => {
 };
 
 const responseData = (result) => {
-    // console.log(result);
     if (result.status === true) {
         setCookieWithExpireHour("token", result.token, 2);
         hideLoadingModal
