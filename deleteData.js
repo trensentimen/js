@@ -1,7 +1,5 @@
 import { postWithBearer } from "./utilities/api.js";
-// import { setInner, getValue } from "https://jscroot.github.io/element/croot.js";
 import getCookie from "./getCookie.js";
-import { addInner } from "./utilities/element.js"
 
 const deleteData = () => {
     if(!confirm("Apakah anda yakin ingin menghapus topik ini?"))
