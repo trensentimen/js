@@ -24,3 +24,11 @@ export let card = `
     </div>
 </div>
 `
+
+export let tabelTopic = `
+<tr>
+    <th>#NO#</th>
+    <td>#TEXT#</td>
+    <td>#SENTIMEN#</td>
+</tr>
+`

@@ -2,7 +2,8 @@ import { postWithBearer } from "./utilities/api.js";
 // import { setInner, getValue } from "https://jscroot.github.io/element/croot.js";
 import getCookie from "./getCookie.js";
 import { addInner } from "./utilities/element.js"
-import {showLoadingModal, hideLoadingModal} from "./utilities/loading.js"
+import { showLoadingModal, hideLoadingModal } from "./utilities/loading.js"
+import { tabelTopic } from "./temp/table.js";
 
 const Postdata = () => {
     showLoadingModal()
@@ -39,9 +40,29 @@ const responseData = (result) => {
 
         document.getElementById("judulInput").value = result.data[0].topicname;
         document.getElementById("topikInput").value = result.data[0].source.value;
-        
+
         const defaultValue = result.data[0].source.source; // Change this value as needed
         document.querySelector(`input[type="radio"][value="${defaultValue}"]`).checked = true;
+
+        //isi tabel
+        if (result.data[0].status == "inputting") {
+            if (result.datatopics.length > 0) {
+                let index = 0;
+                let isiRow = (value) => {
+                    console.log(value)
+                    let content =
+                        tabelTopic.replace("#NO#", index + 1)
+                            .replace("#TEXT#", value.text)
+                            .replace("#SENTIMEN#", value.sentimen !="" ? value.sentimen : "Belum di analisa")
+                    addInner("isiTabel", content);
+                }
+
+                result.datatopics.forEach(isiRow)
+
+                document.getElementById("textNoData").style.display = "none";
+            }
+        }
+
         hideLoadingModal()
         // window.location.href = "sentimen.html";
     } else {
