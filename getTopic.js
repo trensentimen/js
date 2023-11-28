@@ -51,7 +51,7 @@ const responseData = (result) => {
                 let isiRow = (value) => {
                     console.log(value)
                     let content =
-                        tabelTopic.replace("#NO#", index + 1)
+                        tabelTopic.replace("#NO#", index += 1)
                             .replace("#TEXT#", value.text)
                             .replace("#SENTIMEN#", value.sentimen !="" ? value.sentimen : "Belum di analisa")
                     addInner("isiTabel", content);
