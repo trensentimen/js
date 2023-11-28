@@ -6,6 +6,7 @@ const PostSignUp = () => {
     const datainjson = {
         email: getValue("email"),
         password: getValue("password"),
+        phonenumber: getValue("nohp"),
         name: getValue("name")
     };
     post(target_url, datainjson, responseData);

@@ -7,7 +7,7 @@ import {showLoadingModal, hideLoadingModal} from "./utilities/loading.js"
 
 const Postdata = () => {
     showLoadingModal()
-    const target_url = "https://us-central1-trens-project.cloudfunctions.net/getAllTopic";
+    const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/getAllTopics";
     const datainjson = {};
 
     const token = getCookie("token")

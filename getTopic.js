@@ -23,7 +23,7 @@ const Postdata = () => {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
-        hideLoadingModal
+        hideLoadingModal()
         window.location.href = "sentimen.html";
 
     }
@@ -46,7 +46,7 @@ const responseData = (result) => {
         // window.location.href = "sentimen.html";
     } else {
         alert(`parameter bermasalah atau sesi anda sudah habis, silahkan ulangi atau logout dan login ulang`);
-        hideLoadingModal
+        hideLoadingModal()
         window.location.href = "sentimen.html";
 
     }

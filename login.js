@@ -1,5 +1,5 @@
 import { post } from "./utilities/api.js";
-import { setInner, getValue } from "https://jscroot.github.io/element/croot.js";
+import { getValue } from "https://jscroot.github.io/element/croot.js";
 import {showLoadingModal, hideLoadingModal} from "./utilities/loading.js"
 
 const PostSignIn = () => {
@@ -14,9 +14,10 @@ const PostSignIn = () => {
 };
 
 const responseData = (result) => {
+    // console.log(result);
     if (result.status === true) {
         setCookieWithExpireHour("token", result.token, 2);
-        hideLoadingModal
+        hideLoadingModal()
         alert(`Berhasil Masuk ${result.message}`);
         window.location.href = "dashboard.html";
     } else {
