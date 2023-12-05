@@ -5,6 +5,8 @@ import { addInner } from "./utilities/element.js"
 import { showLoadingModal, hideLoadingModal } from "./utilities/loading.js"
 import { tabelTopic } from "./temp/table.js";
 
+let docs = [];
+
 const Postdata = () => {
     showLoadingModal()
     const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/getTopic";
@@ -23,6 +25,7 @@ const Postdata = () => {
     if (token) {
         postWithBearer(target_url, token, datainjson, responseData)
     } else {
+        console.log("token tidak ada " + result.message);
         alert("sesi anda sudah habis, silahkan logout dan login ulang")
         hideLoadingModal()
         window.location.href = "sentimen.html";
@@ -53,9 +56,10 @@ const responseData = (result) => {
             document.getElementById("actionButton").setAttribute("class", "button is-primary");
 
             if (result.datatopics.length > 0) {
+                docs = result.datatopics;
                 let index = 0;
                 let isiRow = (value) => {
-                    console.log(value)
+                    // console.log(value)
                     let content =
                         tabelTopic.replace("#NO#", index += 1)
                             .replace("#TEXT#", value.text)
@@ -67,7 +71,7 @@ const responseData = (result) => {
 
                 document.getElementById("textNoData").style.display = "none";
             }
-        } else if(result.data[0].status == "Analyzing") {
+        } else if(result.data[0].status == "analyzing") {
             document.getElementById("actionButton").innerHTML = "Analyze Data";
             document.getElementById("yourElementId").removeAttribute("onclick");
             document.getElementById("actionButton").setAttribute("class", "button is-primary");
@@ -85,4 +89,7 @@ const responseData = (result) => {
     }
 };
 
+
 Postdata();
+
+export {docs};
