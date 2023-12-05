@@ -54,7 +54,6 @@ const responseData = (result) => {
             document.getElementById("actionButton").innerHTML = "Analyze Data";
             document.getElementById("actionButton").setAttribute("onclick", "analyzeData()");
             document.getElementById("actionButton").setAttribute("class", "button is-primary");
-
             if (result.datatopics.length > 0) {
                 docs = result.datatopics;
                 let index = 0;
@@ -71,11 +70,70 @@ const responseData = (result) => {
 
                 document.getElementById("textNoData").style.display = "none";
             }
-        } else if(result.data[0].status == "analyzing") {
+
+        } else if (result.data[0].status == "analyzing") {
+            if (result.datatopics.length > 0) {
+                docs = result.datatopics;
+                let index = 0;
+                let isiRow = (value) => {
+                    // console.log(value)
+                    let content =
+                        tabelTopic.replace("#NO#", index += 1)
+                            .replace("#TEXT#", value.text)
+                            .replace("#SENTIMEN#", value.sentimen != "" ? value.sentimen : "Belum di analisa")
+                    addInner("isiTabel", content);
+                }
+
+                result.datatopics.forEach(isiRow)
+
+                document.getElementById("textNoData").style.display = "none";
+            }
+
             document.getElementById("actionButton").innerHTML = "Analyze Data";
-            document.getElementById("yourElementId").removeAttribute("onclick");
+            document.getElementById("actionButton").removeAttribute("onclick");
             document.getElementById("actionButton").setAttribute("class", "button is-primary");
             document.getElementById("actionButton").setAttribute("disabled", true);
+
+            let positif = 0;
+            let negatif = 0;
+            let netral = 0;
+            
+            result.datatopics.forEach(value => {
+                const sentimen = value.sentimen;
+                if (sentimen == "positif" ||sentimen == "positive") {
+                    positif += 1;
+                } else if (sentimen == "negatif"||sentimen == "negative") {
+                    negatif += 1;
+                } else if (sentimen == "netral"||sentimen == "neutral") {
+                    netral += 1;
+                }
+            });
+
+            console.log(positif, negatif, netral)
+
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                // Set Data
+                const data = google.visualization.arrayToDataTable([
+                    ['Sentimen', 'Count'],
+                    ['Positif', positif],
+                    ['Netral', netral],
+                    ['Negatif', negatif],
+                ]);
+
+                // Set Options
+                const options = {
+                    title: 'Sentimen Analisis'
+                };
+
+                // Draw
+                const chart = new google.visualization.PieChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+
+            }
         }
 
         hideLoadingModal()
@@ -92,4 +150,4 @@ const responseData = (result) => {
 
 Postdata();
 
-export {docs};
+export { docs };
