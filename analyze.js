@@ -35,9 +35,14 @@ const responseData = (result) => {
         const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/updateSentimen"
 
         const datainjson = docs.map((doc) => {
+            // Membuat objek untuk mapping nilai
+            let mapping = {1: 'positif', 0: 'netral', '-1': 'negatif'};
+
+            // Mengganti nilai dalam array
+            let dataMapped = result.data.map(val => mapping[val]);
             return {
                 ...doc,
-                "sentimen": result.data[docs.indexOf(doc)]
+                "sentimen": dataMapped[docs.indexOf(doc)]
             }
         });
 

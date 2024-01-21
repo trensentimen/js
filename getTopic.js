@@ -100,11 +100,11 @@ const responseData = (result) => {
             
             result.datatopics.forEach(value => {
                 const sentimen = value.sentimen;
-                if (sentimen == "positif" ||sentimen == "positive") {
+                if (sentimen == "positif" ||sentimen == "positive" || sentimen == 1) {
                     positif += 1;
-                } else if (sentimen == "negatif"||sentimen == "negative") {
+                } else if (sentimen == "negatif"||sentimen == "negative" || sentimen == -1) {
                     negatif += 1;
-                } else if (sentimen == "netral"||sentimen == "neutral") {
+                } else if (sentimen == "netral"||sentimen == "neutral" || sentimen == 0) {
                     netral += 1;
                 }
             });
