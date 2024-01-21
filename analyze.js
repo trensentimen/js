@@ -10,7 +10,7 @@ const analyzeData = () => {
     }
 
     showLoadingModal()
-    const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/function-2"
+    const target_url = "https://asia-southeast2-trens-project.cloudfunctions.net/analisis-sentimen"
 
     const datainjson = {
         "sentiments": docs.map((doc) => doc.text),
